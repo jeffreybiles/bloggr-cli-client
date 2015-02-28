@@ -3,13 +3,12 @@ import Ember from 'ember';
 export default Ember.ArrayController.extend({
   sortProperties: ['createdAt'],
   sortAscending: true,
+  downArrow: '&#9660',
+  upArrow: '&#9650',
   actions: {
-    sortBy: function(property){
-      if(property = this.get('sortProperties')[0]){
-        this.toggleProperty('sortAscending')
-      } else {
-        this.set('sortAscending', true)
-      }
+    sortBy: function(property, ascending){
+      console.log('ascending', ascending)
+      this.set('sortAscending', ascending)
       this.set('sortProperties', [property]);
     }
   }

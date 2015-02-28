@@ -7,10 +7,26 @@
       <table class='table'>
         <thead>
           <tr>
-            <th {{action 'sortBy' 'title'}}>Title</th>
-            <th {{action 'sortBy' 'author'}}>Author</th>
-            <th {{action 'sortBy' 'createdAt'}}>Created</th>
-            <th {{action 'sortBy' 'updatedAt'}}>Updated</th>
+            <th>
+              Title
+              <button {{action 'sortBy' 'title' true}}>{{{downArrow}}}</button>
+              <button {{action 'sortBy' 'title' false}}>{{{upArrow}}}</button>
+            </th>
+            <th>
+              Author
+              <button {{action 'sortBy' 'author' true}}>{{{downArrow}}}</button>
+              <button {{action 'sortBy' 'author' false}}>{{{upArrow}}}</button>
+            </th>
+            <th>
+              Created
+              <button {{action 'sortBy' 'createdAt' true}}>{{{downArrow}}}</button>
+              <button {{action 'sortBy' 'createdAt' false}}>{{{upArrow}}}</button>
+            </th>
+            <th>
+              Updated
+              <button {{action 'sortBy' 'updatedAt' true}}>{{{downArrow}}}</button>
+              <button {{action 'sortBy' 'updatedAt' false}}>{{{upArrow}}}</button>
+            </th>
           </tr>
         </thead>
         <tbody>
