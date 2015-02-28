@@ -2,15 +2,33 @@
   <div class="row-fluid">
     <div class="span3">
       {{#link-to 'posts.new'}}Create a new post{{/link-to}}
+      <br>
+      <h2>Posts</h2>
       <table class='table'>
         <thead>
-          <tr><th>Recent Posts</th></tr>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Created</th>
+            <th>Updated</th>
+          </tr>
         </thead>
         <tbody>
           {{#each post in model}}
-          <tr><td>
-              {{#link-to 'post' post}}{{post.title}} <small class='muted'>by {{post.author}}</small>{{/link-to}}
-          </td></tr>
+          <tr>
+            <td>
+              {{#link-to 'post' post}}{{post.title}}{{/link-to}}
+            </td>
+            <td>
+              {{post.author}}
+            </td>
+            <td>
+              {{format-date post.createdAt}}
+            </td>
+            <td>
+              {{format-date post.updatedAt}}
+            </td>
+          </tr>
           {{/each}}
         </tbody>
       </table>

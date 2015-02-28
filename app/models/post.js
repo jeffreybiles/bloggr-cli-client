@@ -4,7 +4,8 @@ export default DS.Model.extend({
   title: DS.attr(),
   videoUrl: DS.attr(),
   author: DS.attr(),
-  date: DS.attr(),
+  updatedAt: DS.attr('date'),
+  createdAt: DS.attr('date'),
   body: DS.attr(),
 
   deckedOutVideoUrl: function(){
