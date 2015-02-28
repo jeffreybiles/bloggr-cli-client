@@ -1,3 +1,15 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<div class="navbar navbar-static">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Bloggr</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li>{{#link-to 'posts'}}Posts{{/link-to}}</li>
+      <li>{{#link-to 'about'}}About{{/link-to}}</li>
+    </ul>
+  </div>
+</div>
 
+<div class="container main-content">
 {{outlet}}
+</div>

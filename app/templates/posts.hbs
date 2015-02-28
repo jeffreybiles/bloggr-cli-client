@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      {{#link-to 'posts.new'}}Create a new post{{/link-to}}
+      <table class='table'>
+        <thead>
+          <tr><th>Recent Posts</th></tr>
+        </thead>
+        <tbody>
+          {{#each post in model}}
+          <tr><td>
+              {{#link-to 'post' post}}{{post.title}} <small class='muted'>by {{post.author}}</small>{{/link-to}}
+          </td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class="span9">
+      {{outlet}}
+    </div>
+  </div>
+</div>
