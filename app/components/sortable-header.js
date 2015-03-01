@@ -16,14 +16,11 @@ export default Ember.Component.extend({
       return '&#9650';
     }
   }),
-
+  sortProperties: Ember.computed('sortProperty', function(){
+    return [this.get('sortProperty')]
+  }),
   isCurrentSort: Ember.computed('parent.sortProperties.firstObject', 'sortProperty', function(){
     return this.get('parent.sortProperties.firstObject') === this.get('sortProperty');
   }),
-  isAscending: Ember.computed.alias('parent.sortAscending'),
-  actions: {
-    sortBy: function(order){
-      this.sendAction('action', this.get('sortProperty'), order);
-    }
-  }
+  isAscending: Ember.computed.alias('parent.sortAscending')
 });

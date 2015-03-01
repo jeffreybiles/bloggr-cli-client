@@ -1,3 +1,3 @@
 {{title}}
-<button {{action 'sortBy' true}}>{{{downArrow}}}</button>
-<button {{action 'sortBy' false}}>{{{upArrow}}}</button>
+<button> {{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=true)}} {{{downArrow}}} {{/link-to}}</button>
+<button> {{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=false)}} {{{upArrow}}} {{/link-to}}</button>
