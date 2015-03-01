@@ -1,3 +1,11 @@
 {{title}}
-<button> {{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=true)}} {{{downArrow}}} {{/link-to}}</button>
-<button> {{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=false)}} {{{upArrow}}} {{/link-to}}</button>
+{{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=true) tagName="button"}}
+  <div {{bind-attr class='downArrowHighlighted:gold'}}>
+    {{{downArrow}}}
+  </div>
+{{/link-to}}
+{{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=false) tagName="button"}}
+  <div {{bind-attr class='upArrowHighlighted:gold'}}>
+    {{{upArrow}}}
+  </div>
+{{/link-to}}
