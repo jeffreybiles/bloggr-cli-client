@@ -1,3 +1,11 @@
 {{title}}
-<button {{action 'sortBy' true}}>{{{downArrow}}}</button>
-<button {{action 'sortBy' false}}>{{{upArrow}}}</button>
+<button {{action 'sortBy' sortProperty true}}>
+  <div {{bind-attr class='downArrowHighlighted:gold'}}>
+    {{{downArrow}}}
+  </div>
+</button>
+<button {{action 'sortBy' sortProperty false}}>
+  <div {{bind-attr class='upArrowHighlighted:gold'}}>
+    {{{upArrow}}}
+  </div>
+</button>

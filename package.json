@@ -36,5 +36,8 @@
     "ember-export-application-global": "^1.0.2",
     "express": "^4.8.5",
     "glob": "^4.0.5"
+  },
+  "dependencies": {
+    "ember-moment": "^1.1.1"
   }
 }

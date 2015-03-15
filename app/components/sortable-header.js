@@ -2,19 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'th',
-  downArrow: Ember.computed('isAscending', 'isCurrentSort', function(){
-    if(this.get('isCurrentSort') && this.get('isAscending')){
-      return '<span class="gold">&#9660<span>';
-    } else {
-      return '&#9660';
-    }
+
+  downArrow: '&#9660',
+  downArrowHighlighted: Ember.computed('isAscending', 'isCurrentSort', function(){
+    return this.get('isCurrentSort') && this.get('isAscending');
   }),
-  upArrow: Ember.computed('isAscending', 'isCurrentSort', function(){
-    if(this.get('isCurrentSort') && !this.get('isAscending')){
-      return '<span class="gold">&#9650</span>';
-    } else {
-      return '&#9650';
-    }
+  upArrow: '&#9650',
+  upArrowHighlighted: Ember.computed('isAscending', 'isCurrentSort', function(){
+    return this.get('isCurrentSort') && !this.get('isAscending');
   }),
 
   isCurrentSort: Ember.computed('parent.sortProperties.firstObject', 'sortProperty', function(){
@@ -22,8 +17,8 @@ export default Ember.Component.extend({
   }),
   isAscending: Ember.computed.alias('parent.sortAscending'),
   actions: {
-    sortBy: function(order){
-      this.sendAction('action', this.get('sortProperty'), order);
+    sortBy: function(sortProperty, order){
+      this.sendAction('action', sortProperty, order);
     }
   }
 });
