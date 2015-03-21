@@ -1,3 +1,11 @@
 {{title}}
-<button {{action 'sortBy' true}} class="{{if downArrowHighlighted 'gold'}}">{{{downArrow}}}</button>
-<button {{action 'sortBy' false}} class="{{if upArrowHighlighted 'gold'}}">{{{upArrow}}}</button>
+{{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=true) tagName="button"}}
+  <div class="{{if upArrowHighlighted 'gold'}}">
+    {{{downArrow}}}
+  </div>
+{{/link-to}}
+{{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=false) tagName="button"}}
+  <div class="{{if downArrowHighlighted 'gold'}}">
+    {{{upArrow}}}
+  </div>
+{{/link-to}}

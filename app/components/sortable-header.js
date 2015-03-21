@@ -9,15 +9,12 @@ export default Ember.Component.extend({
     return this.get('selectedSorts')[0] === this.get('sortProperty');
   }),
   upArrowHighlighted: Ember.computed('isSelectedSort', 'isAscending', function(){
-    return this.get("isSelectedSort") && !this.get('isAscending');
-  }),
-  downArrowHighlighted: Ember.computed('isSelectedSort', 'isAscending', function(){
     return this.get("isSelectedSort") && this.get('isAscending');
   }),
-  
-  actions: {
-    sortBy: function(order){
-      this.sendAction('action', this.get('sortProperty'), order)
-    }
-  }
+  downArrowHighlighted: Ember.computed('isSelectedSort', 'isAscending', function(){
+    return this.get("isSelectedSort") && !this.get('isAscending');
+  }),
+  sortProperties: Ember.computed('sortProperty', function(){
+    return [this.get('sortProperty')]
+  })
 });
