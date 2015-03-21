@@ -6,6 +6,7 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
   sortAscending: true,
   pageNumber: 0,
   pageSize: 10,
+  possiblePageSizes: [10, 25, 50, 100],
   paginatedContent: Ember.computed('pages', 'pageNumber', function(){
     return this.get('pages')[this.get('pageNumber')]
   }),
@@ -27,6 +28,12 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
       if(this.get('pageNumber') + 1 < this.get('pages.length')){
         this.set('pageNumber', this.get('pageNumber') + 1);
       }
+    },
+    changePageSize: function(newPageSize){
+      var currentOffset = this.get('pageSize') * this.get('pageNumber');
+      var newPageNumber = Math.floor(currentOffset / newPageSize);
+      this.set('pageNumber', newPageNumber);
+      this.set('pageSize', newPageSize)
     }
   }
 });
