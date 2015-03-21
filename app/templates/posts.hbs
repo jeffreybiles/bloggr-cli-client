@@ -4,6 +4,12 @@
       {{#link-to 'posts.new'}}Create a new post{{/link-to}}
       <br>
       <h2>Posts</h2>
+      <a {{action 'previousPage'}}>Previous Page</a>
+      {{#each pages as |page index|}}
+        {{#link-to 'posts' (query-params pageNumber=index)}}{{add-one index}}{{/link-to}}
+      {{/each}}
+      <a {{action 'nextPage'}}>Next Page</a>
+      <b>Current page: {{add-one pageNumber}}</b>
       <table class='table'>
         <thead>
           <tr>
@@ -14,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each post in arrangedContent}}
+          {{#each post in paginatedContent}}
           <tr>
             <td>
               {{#link-to 'post' post}}{{post.title}}{{/link-to}}
