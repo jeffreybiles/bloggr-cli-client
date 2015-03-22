@@ -18,10 +18,15 @@
       {{#each possiblePageSizes as |newSize|}}
         <button {{action 'changePageSize' newSize}}>{{newSize}}</button>
       {{/each}}
+      <br>
+      Columns used:
+      {{#each availableColumns as |column|}}
+        {{checkbox-for-displaying displayedList=columnsUsed displayableItem=column}}
+      {{/each}}
       <table class='table'>
         <thead>
           <tr>
-            {{#each column in availableColumns}}
+            {{#each column in columns}}
               {{sortable-header title=column.title sortProperty=column.property selectedSorts=sortProperties isAscending=sortAscending}}
             {{/each}}
           </tr>
@@ -29,7 +34,7 @@
         <tbody>
           {{#each post in paginatedContent}}
           <tr>
-            {{#each column in availableColumns}}
+            {{#each column in columns}}
               <td>
                 {{table-block-output column=column item=post}}
               </td>
