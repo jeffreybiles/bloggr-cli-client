@@ -1,0 +1,7 @@
+{{#if isPlain}}
+  {{itemProperty}}
+{{else if isDate}}
+  {{format-date itemProperty}}
+{{else if isPostLink}}
+  {{#link-to 'post' item}}{{itemProperty}}{{/link-to}}
+{{/if}}

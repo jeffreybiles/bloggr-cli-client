@@ -21,27 +21,19 @@
       <table class='table'>
         <thead>
           <tr>
-            {{sortable-header title='Title' sortProperty='title' selectedSorts=sortProperties isAscending=sortAscending}}
-            {{sortable-header title='Author' sortProperty='author' selectedSorts=sortProperties isAscending=sortAscending}}
-            {{sortable-header title='Created' sortProperty='createdAt' selectedSorts=sortProperties isAscending=sortAscending}}
-            {{sortable-header title='Updated' sortProperty='updatedAt' selectedSorts=sortProperties  isAscending=sortAscending}}
+            {{#each column in availableColumns}}
+              {{sortable-header title=column.title sortProperty=column.property selectedSorts=sortProperties isAscending=sortAscending}}
+            {{/each}}
           </tr>
         </thead>
         <tbody>
           {{#each post in paginatedContent}}
           <tr>
-            <td>
-              {{#link-to 'post' post}}{{post.title}}{{/link-to}}
-            </td>
-            <td>
-              {{post.author}}
-            </td>
-            <td>
-              {{format-date post.createdAt}}
-            </td>
-            <td>
-              {{format-date post.updatedAt}}
-            </td>
+            {{#each column in availableColumns}}
+              <td>
+                {{table-block-output column=column item=post}}
+              </td>
+            {{/each}}
           </tr>
           {{/each}}
         </tbody>

@@ -1,7 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend(Ember.SortableMixin, {
-  queryParams: ['sortProperties', 'sortAscending', 'pageNumber', 'pageSize'],
+  queryParams: ['sortProperties', 'sortAscending', 'pageNumber', 'pageSize', 'displayedColumns'],
+  availableColumns: [
+    {'title': 'Title', 'property': 'title', 'display': 'post-link'},
+    {'title': 'Author', 'property': 'author', 'display': 'plain'},
+    {'title': 'Updated', 'property': 'updatedAt', 'display': 'date'},
+    {'title': 'Created', 'property': 'createdAt', 'display': 'date'}
+  ],
   sortProperties: ['createdAt'],
   sortAscending: true,
   pageNumber: 0,
