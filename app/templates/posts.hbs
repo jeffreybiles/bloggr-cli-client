@@ -23,6 +23,15 @@
       {{#each availableColumns as |column|}}
         {{checkbox-for-displaying displayedList=columnsUsed displayableItem=column}}
       {{/each}}
+      <hr>
+      Arrange Columns:
+      {{#each columns as |column|}}
+        <div>
+          <button {{action 'moveUp' column.property}}>^</button>
+          {{column.title}}
+          <button {{action 'moveDown' column.property}}>v</button>
+        </div>
+      {{/each}}
       <table class='table'>
         <thead>
           <tr>
