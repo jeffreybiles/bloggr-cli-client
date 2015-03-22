@@ -19,7 +19,7 @@
         <button {{action 'changePageSize' newSize}}>{{newSize}}</button>
       {{/each}}
       <br>
-      Search: {{input value=searchQuery}}
+      Search: {{input value=searchQuery focus-out="triggerSearch"}}
       <table class='table'>
         <thead>
           <tr>

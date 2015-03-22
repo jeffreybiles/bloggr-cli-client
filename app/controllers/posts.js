@@ -19,7 +19,8 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
     return pages;
   }),
   searchQuery: null,
-  searchResults: Ember.computed('searchQuery', 'arrangedContent', function(){
+  triggeredSearchQuery: null,
+  searchResults: Ember.computed('triggeredSearchQuery', 'arrangedContent', function(){
     var searchQuery = this.get('searchQuery')
     if(!searchQuery){
       return this.get('arrangedContent')
@@ -51,6 +52,9 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
       var newPageNumber = Math.floor(currentOffset / newPageSize);
       this.set('pageNumber', newPageNumber);
       this.set('pageSize', newPageSize)
+    },
+    triggerSearch: function(){
+      this.set('triggeredSearchQuery', this.get('searchQuery'))
     }
   }
 });
