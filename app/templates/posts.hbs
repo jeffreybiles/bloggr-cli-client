@@ -18,6 +18,8 @@
       {{#each possiblePageSizes as |newSize|}}
         <button {{action 'changePageSize' newSize}}>{{newSize}}</button>
       {{/each}}
+      <br>
+      Search: {{input value=searchQuery}}
       <table class='table'>
         <thead>
           <tr>

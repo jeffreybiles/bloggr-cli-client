@@ -10,13 +10,30 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
   paginatedContent: Ember.computed('pages', 'pageNumber', function(){
     return this.get('pages')[this.get('pageNumber')]
   }),
-  pages: Ember.computed('arrangedContent', 'pageSize', 'sortAscending', function(){
+  pages: Ember.computed('searchResults', 'pageSize', 'sortAscending', function(){
     var pages = [];
-    var arrangedContent = this.get('arrangedContent').copy();
+    var arrangedContent = this.get('searchResults').copy();
     while (arrangedContent.length > 0) {
       pages.push(arrangedContent.splice(0, this.get('pageSize')));
     }
     return pages;
+  }),
+  searchQuery: null,
+  searchResults: Ember.computed('searchQuery', 'arrangedContent', function(){
+    var searchQuery = this.get('searchQuery')
+    if(!searchQuery){
+      return this.get('arrangedContent')
+    } else {
+      var regex = new RegExp(searchQuery)
+      this.set('pageNumber', 0)
+      return this.get('arrangedContent').filter(function(item, index, ennumerable){
+        var searchedFields = ['title', 'author', 'createdAt', 'updatedAt']
+        return searchedFields.any(function(searchedField, index, ennumerable){
+          console.log(item, searchedField)
+          return item.get(searchedField).toString().match(regex);
+        })
+      })
+    }
   }),
   actions: {
     previousPage: function(){
