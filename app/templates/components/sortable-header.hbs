@@ -1,3 +1,6 @@
+<button {{action 'moveLeft'}}>{{show-brackets '<'}}</button>
+<button {{action 'moveRight'}}>{{show-brackets '>'}}</button>
+
 {{title}}
 {{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=true) tagName="button"}}
   <div class="{{if upArrowHighlighted 'gold'}}">

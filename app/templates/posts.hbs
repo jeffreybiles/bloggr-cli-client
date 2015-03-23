@@ -5,38 +5,28 @@
       <br>
       <h2>Posts</h2>
 
-      Current page: <b>{{add-one pageNumber}}</b>
-      <br>
-      <a {{action 'previousPage'}}>Previous Page</a>
+      <button {{action 'previousPage'}}>Previous Page</button>
       {{#each pages as |page index|}}
-        {{#link-to 'posts' (query-params pageNumber=index)}}{{add-one index}}{{/link-to}}
+        <span class="{{if (is-equal index pageNumber) 'bold big-text'}}">
+          {{#link-to 'posts' (query-params pageNumber=index) tagName="button"}}{{add-one index}}{{/link-to}}
+        </span>
       {{/each}}
-      <a {{action 'nextPage'}}>Next Page</a>
+      <button {{action 'nextPage'}}>Next Page</button>
       <br>
-      Current page size: {{pageSize}}
-      <br>
+      Page size:
       {{#each possiblePageSizes as |newSize|}}
-        <button {{action 'changePageSize' newSize}}>{{newSize}}</button>
+        <button {{action 'changePageSize' newSize}} class="{{if (is-equal newSize pageSize) 'bold big-text'}}">{{newSize}}</button>
       {{/each}}
-      <br>
+      <hr>
       Columns used:
       {{#each availableColumns as |column|}}
         {{checkbox-for-displaying displayedList=columnsUsed displayableItem=column}}
-      {{/each}}
-      <hr>
-      Arrange Columns:
-      {{#each columns as |column|}}
-        <div>
-          <button {{action 'moveUp' column.property}}>^</button>
-          {{column.title}}
-          <button {{action 'moveDown' column.property}}>v</button>
-        </div>
       {{/each}}
       <table class='table'>
         <thead>
           <tr>
             {{#each column in columns}}
-              {{sortable-header title=column.title sortProperty=column.property selectedSorts=sortProperties isAscending=sortAscending}}
+              {{sortable-header title=column.title sortProperty=column.property selectedSorts=sortProperties isAscending=sortAscending moveLeft="moveLeft" moveRight="moveRight"}}
             {{/each}}
           </tr>
         </thead>

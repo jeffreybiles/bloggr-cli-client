@@ -54,7 +54,7 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
       this.set('pageNumber', newPageNumber);
       this.set('pageSize', newPageSize)
     },
-    moveUp: function(property){
+    moveLeft: function(property){
       var columns = this.get('columnsUsed')
       var index = columns.indexOf(property)
       columns.removeObject(property)
@@ -64,7 +64,7 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
         columns.insertAt(index - 1, property)
       }
     },
-    moveDown: function(property){
+    moveRight: function(property){
       var columns = this.get('columnsUsed')
       var index = columns.indexOf(property)
       columns.removeObject(property)
