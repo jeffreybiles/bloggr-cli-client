@@ -9,3 +9,20 @@
 .big-text {
   font-size: 1.3em;
 }
+
+.table-options {
+  border: 1px black solid;
+  border-radius: 5px;
+  background-color: #DEE9E7;
+  margin: 10px 0;
+
+  .table-option {
+    margin: 10px;
+
+    .option-name {
+      width: 150px;
+      display: inline-block;
+      text-align: center;
+    }
+  }
+}

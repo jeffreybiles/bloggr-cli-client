@@ -1,5 +1,4 @@
-<button {{action 'moveLeft'}}>{{show-brackets '<'}}</button>
-<button {{action 'moveRight'}}>{{show-brackets '>'}}</button>
+<button {{action 'moveLeft'}} class="pull-left">{{show-brackets '<'}}</button>
 
 {{title}}
 {{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=true) tagName="button"}}
@@ -12,3 +11,5 @@
     {{{upArrow}}}
   </div>
 {{/link-to}}
+
+<button {{action 'moveRight'}} class="pull-right">{{show-brackets '>'}}</button>

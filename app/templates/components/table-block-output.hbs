@@ -1,7 +1,7 @@
 {{#if isPlain}}
-  {{itemProperty}}
+  {{truncate-text itemProperty 50}}
 {{else if isDate}}
   {{format-date itemProperty}}
 {{else if isPostLink}}
-  {{#link-to 'post' item}}{{itemProperty}}{{/link-to}}
+  {{#link-to 'post' item}}{{truncate-text itemProperty 50}}{{/link-to}}
 {{/if}}
