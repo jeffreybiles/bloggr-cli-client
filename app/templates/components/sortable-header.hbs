@@ -1,11 +1,11 @@
 {{title}}
 {{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=true) tagName="button"}}
-  <div class="{{if upArrowHighlighted 'gold'}}">
+  <div class="{{if (es-and isSelectedSort isAscending) 'gold'}}">
     {{{downArrow}}}
   </div>
 {{/link-to}}
 {{#link-to 'posts' (query-params sortProperties=sortProperties sortAscending=false) tagName="button"}}
-  <div class="{{if downArrowHighlighted 'gold'}}">
+  <div class="{{if (es-and isSelectedSort (es-not isAscending)) 'gold'}}">
     {{{upArrow}}}
   </div>
 {{/link-to}}
