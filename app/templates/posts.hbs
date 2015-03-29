@@ -4,6 +4,9 @@
       {{#link-to 'posts.new'}}Create a new post{{/link-to}}
       <br>
       <h2>Posts</h2>
+      {{with-options 'with-options helper'}}
+      {{with-options 'has' first=' first option' tagName="b"}}
+      {{with-options 'and' second=' second option' third='but not third option'}}
       <table class='table'>
         <thead>
           <tr>
