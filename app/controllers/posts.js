@@ -5,6 +5,15 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
   sortProperties: ['createdAt'],
   sortAscending: true,
 
+  availableColumns: [
+    {'title': 'Title', 'property': 'title', 'display': 'plain'},
+    {'title': 'Author', 'property': 'author', 'display': 'plain'},
+    {'title': 'Updated', 'property': 'updatedAt', 'display': 'date'},
+    {'title': 'Created', 'property': 'createdAt', 'display': 'date'},
+    {'title': 'Body', 'property': 'body', 'display': 'plain'}
+  ],
+  columns: Ember.computed.alias('availableColumns'),
+
   pageNumber: 0,
   pageSize: 10,
   possiblePageSizes: [10, 25, 50, 100],

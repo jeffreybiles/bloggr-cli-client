@@ -29,27 +29,23 @@
         <table class='table table-striped table-bordered table-condensed'>
           <thead>
             <tr>
-              {{sortable-header title='Title' sortProperty='title' selectedSorts=sortProperties isAscending=sortAscending}}
-              {{sortable-header title='Author' sortProperty='author' selectedSorts=sortProperties isAscending=sortAscending}}
-              {{sortable-header title='Created' sortProperty='createdAt' selectedSorts=sortProperties isAscending=sortAscending}}
-              {{sortable-header title='Updated' sortProperty='updatedAt' selectedSorts=sortProperties  isAscending=sortAscending}}
+              {{#each columns as |column|}}
+                {{sortable-header title=column.title sortProperty=column.property selectedSorts=sortProperties isAscending=sortAscending}}
+              {{/each}}
             </tr>
           </thead>
           <tbody>
             {{#each post in paginatedContent}}
             <tr>
-              <td>
-                {{#link-to 'post' post}}{{truncate-text post.title 50}}{{/link-to}}
-              </td>
-              <td>
-                {{post.author}}
-              </td>
-              <td>
-                {{format-date post.createdAt}}
-              </td>
-              <td>
-                {{format-date post.updatedAt}}
-              </td>
+              {{#each columns as |column|}}
+                <td>
+                  {{#if (es-equal column.display 'plain')}}
+                    {{get post column.property}}
+                  {{else if (es-equal column.display 'date')}}
+                    {{format-date (get post column.property)}}
+                  {{/if}}
+                </td>
+              {{/each}}
             </tr>
             {{/each}}
           </tbody>
