@@ -8,10 +8,19 @@
       <div class="table-options">
         <div class="table-option">
           <span class="option-name">Current Page</span>
+          <button {{action 'previousPage'}}>Previous Page</button>
           {{#each pages as |page index|}}
             <span class="{{if (es-equal index pageNumber) 'bold big-text'}}">
               {{#link-to 'posts' (query-params pageNumber=index) tagName="button"}}{{add-one index}}{{/link-to}}
             </span>
+          {{/each}}
+          <button {{action 'nextPage'}}>Next Page</button>
+        </div>
+
+        <div class="table-option">
+          <span class="option-name">Page size</span>
+          {{#each possiblePageSizes as |newSize|}}
+            <button {{action 'changePageSize' newSize}} class="{{if (es-equal newSize pageSize) 'bold big-text'}}">{{newSize}}</button>
           {{/each}}
         </div>
       </div>
