@@ -3,35 +3,38 @@
     <div class="span3">
       {{#link-to 'posts.new'}}Create a new post{{/link-to}}
       <br>
-      <h2>Posts</h2>
-      <table class='table'>
-        <thead>
-          <tr>
-            {{sortable-header title='Title' sortProperty='title' selectedSorts=sortProperties isAscending=sortAscending}}
-            {{sortable-header title='Author' sortProperty='author' selectedSorts=sortProperties isAscending=sortAscending}}
-            {{sortable-header title='Created' sortProperty='createdAt' selectedSorts=sortProperties isAscending=sortAscending}}
-            {{sortable-header title='Updated' sortProperty='updatedAt' selectedSorts=sortProperties  isAscending=sortAscending}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each post in arrangedContent}}
-          <tr>
-            <td>
-              {{#link-to 'post' post}}{{post.title}}{{/link-to}}
-            </td>
-            <td>
-              {{post.author}}
-            </td>
-            <td>
-              {{format-date post.createdAt}}
-            </td>
-            <td>
-              {{format-date post.updatedAt}}
-            </td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
+      <h2 class="text-center">Posts</h2>
+
+      <div class="table-responsive">
+        <table class='table table-striped table-bordered table-condensed'>
+          <thead>
+            <tr>
+              {{sortable-header title='Title' sortProperty='title' selectedSorts=sortProperties isAscending=sortAscending}}
+              {{sortable-header title='Author' sortProperty='author' selectedSorts=sortProperties isAscending=sortAscending}}
+              {{sortable-header title='Created' sortProperty='createdAt' selectedSorts=sortProperties isAscending=sortAscending}}
+              {{sortable-header title='Updated' sortProperty='updatedAt' selectedSorts=sortProperties  isAscending=sortAscending}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each post in arrangedContent}}
+            <tr>
+              <td>
+                {{#link-to 'post' post}}{{truncate-text post.title 50}}{{/link-to}}
+              </td>
+              <td>
+                {{post.author}}
+              </td>
+              <td>
+                {{format-date post.createdAt}}
+              </td>
+              <td>
+                {{format-date post.updatedAt}}
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="span9">
       {{outlet}}
