@@ -23,6 +23,13 @@
             <button {{action 'changePageSize' newSize}} class="{{if (es-equal newSize pageSize) 'bold big-text'}}">{{newSize}}</button>
           {{/each}}
         </div>
+
+        <div class="table-option">
+          <span class="option-name">Columns used</span>
+          {{#each availableColumns as |column|}}
+            {{toggleable-item toggledList=columnsUsed toggleableItem=column}}
+          {{/each}}
+        </div>
       </div>
 
       <div class="table-responsive">

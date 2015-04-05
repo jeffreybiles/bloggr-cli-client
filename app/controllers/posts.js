@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend(Ember.SortableMixin, {
-  queryParams: ['sortProperties', 'sortAscending', 'pageNumber', 'pageSize'],
+  queryParams: ['sortProperties', 'sortAscending', 'pageNumber', 'pageSize', 'columnsUsed'],
   sortProperties: ['createdAt'],
   sortAscending: true,
 
@@ -12,7 +12,17 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
     {'title': 'Created', 'property': 'createdAt', 'display': 'date'},
     {'title': 'Body', 'property': 'body', 'display': 'plain'}
   ],
-  columns: Ember.computed.alias('availableColumns'),
+
+  columnsUsed: [
+    'title',
+    'author'
+  ],
+  columns: Ember.computed('availableColumns', 'columnsUsed.@each', function(){
+    var controller = this;
+    return this.get('availableColumns').filter(function(column, index, ennumerable){
+      return controller.get('columnsUsed').contains(column.property)
+    })
+  }),
 
   pageNumber: 0,
   pageSize: 10,
