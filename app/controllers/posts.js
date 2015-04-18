@@ -19,8 +19,10 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
   ],
   columns: Ember.computed('availableColumns', 'columnsUsed.@each', function(){
     var controller = this;
-    return this.get('availableColumns').filter(function(column, index, ennumerable){
-      return controller.get('columnsUsed').contains(column.property)
+    return this.get('columnsUsed').map(function(columnProperty){
+      return controller.get('availableColumns').filter(function(column){
+        return columnProperty == column.property
+      })[0]
     })
   }),
 
@@ -55,6 +57,27 @@ export default Ember.Controller.extend(Ember.SortableMixin, {
       var newPageNumber = Math.floor(currentOffset / newPageSize);
       this.set('pageNumber', newPageNumber);
       this.set('pageSize', newPageSize)
+    },
+    moveLeft: function(property){
+      var columns = this.get('columnsUsed')
+      var index = columns.indexOf(property)
+      columns.removeObject(property)
+      if(index == 0){
+        columns.insertAt(index, property)
+      } else {
+        columns.insertAt(index - 1, property)
+      }
+    },
+    moveRight: function(property){
+      var columns = this.get('columnsUsed')
+      var index = columns.indexOf(property)
+      columns.removeObject(property)
+      if(columns.length > index){
+        columns.insertAt(index + 1, property)
+      } else {
+        columns.insertAt(index, property)
+      }
     }
+
   }
 });

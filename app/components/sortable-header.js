@@ -11,5 +11,13 @@ export default Ember.Component.extend({
   }),
   sortProperties: Ember.computed('sortProperty', function(){
     return [this.get('sortProperty')]
-  })
+  }),
+  actions: {
+    moveLeft: function(){
+      this.sendAction('moveLeft', this.get('sortProperty'))
+    },
+    moveRight: function(){
+      this.sendAction('moveRight', this.get('sortProperty'))
+    }
+  }
 });

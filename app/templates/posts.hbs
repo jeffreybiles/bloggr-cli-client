@@ -37,7 +37,7 @@
           <thead>
             <tr>
               {{#each columns as |column|}}
-                {{sortable-header title=column.title sortProperty=column.property selectedSorts=sortProperties isAscending=sortAscending}}
+                {{sortable-header title=column.title sortProperty=column.property selectedSorts=sortProperties isAscending=sortAscending moveLeft="moveLeft" moveRight="moveRight"}}
               {{/each}}
             </tr>
           </thead>
