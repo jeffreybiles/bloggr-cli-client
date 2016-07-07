@@ -47,9 +47,9 @@
               {{#each columns as |column|}}
                 <td>
                   {{#if (es-equal column.display 'plain')}}
-                    {{get post column.property}}
+                    {{get-property post column.property}}
                   {{else if (es-equal column.display 'date')}}
-                    {{format-date (get post column.property)}}
+                    {{format-date (get-property post column.property)}}
                   {{/if}}
                 </td>
               {{/each}}
